@@ -2,7 +2,7 @@
 An easy way to create a threaded queue for Python 2 or 3
 
 By default easyThread will create 10 threads and 10 jobs to perform.  The default parameters easyThread will use are:
-* jobList = list(range(10))
+* jobList = range(10)
 * nThread = 10
 
 jobList - A list of things you want to pass the function which is threaded.  It could be anything.  As a silly example below, we use the jobList to print values in the range 0-9.  If you choose not to use the elements within jobList for use directly in EasyThread.theThread() that is okay as well.  The main thing to keep in mind is that jobList is the maxmimum amount of times your function is repeated.
