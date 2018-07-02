@@ -12,22 +12,42 @@ nThread - This is an integer representing the threads available for your use.
 #### EasyThread.theThread()
 This is the function which you will create.  As there was no purpose to create this object in the file, the code itself does not contain it.  You the user must define what theThread() does.  An example of how to do so is below.
 
-### Example Usage:
+### Example Usage #1 -- Method moficiation
+Add our function as a method to EasyThread.  This has the benefit of allowing our function access to the Class via the function becoming a Method of the Class.
 ~~~~
-from easyThread import EasyThread
+	from easyThread import EasyThread
 
-def ourWorkToThread(self, work):
-    """An example of work to be threaded"""
-    print('Our pool: {0}'.format(work))
+    ## Create a function defining what you want your jobs to do
+    ## Use of the work object is not required, but is provided if wanted
+    def exampleThread1(self, work):
+        print (work)
+		print (self.nThread)
 
-## Add our function to EasyThread
-EasyThread.theThread = ourWorkToThread
+    ## Add our function to EasyThread
+    EasyThread.theThread = exampleThread1
+       
+    ## Instantiate using #s other than defaults
+    et = EasyThread([1,2,3,4,5], 5)
+    
+    ## Start the work
+    et.easyLaunch()
+~~~~
 
-## Prep easyThread
-et = EasyThread()
+### Example Usage #2 -- Parameterization
+Pass our function as a parameter to EasyThread.  Does not allow our function access to the Class:
+~~~~
+	from easyThread import EasyThread
 
-## Launch easyThread with your function
-et.easyLaunch()
+    ## Create a function defining what you want your jobs to do
+    ## Use of the work object is not required, but is provided if wanted
+    def exampleThread2(work):
+        print(work)    
+    
+    ## Instantiate with our function using the default parameters
+    et = EasyThread(exampleThread2)
+    
+    ## Start the work
+    et.easyLaunch()
 ~~~~
 
 ### Feedback
