@@ -5,7 +5,7 @@ from queue import Queue
 
 class EasyThread(object):
     """Setup and hold the threaded environment"""
-    def __init__(self, jobList = list(range(10)), nThread = 10):
+    def __init__(self, jobList = range(10), nThread = 10):
         self.q = Queue(maxsize = 0)
         self.jobList = jobList
         self.nThread = nThread
@@ -34,7 +34,10 @@ class EasyThread(object):
 ## Give a quick reminder of how to run
 if __name__ == '__main__':
 
-    ## Create a function defining what you want your jobs to do
+    """
+    Create a function defining what you want your jobs to do
+    Use of the work object is not required, but is provided if wanted
+    """
     def exampleThread(self, work):
         print(work)
 
