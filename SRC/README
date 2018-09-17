@@ -15,19 +15,19 @@ This is the function which you will create.  As there was no purpose to create t
 ### Example Usage #1 -- Method moficiation
 Add our function as a method to EasyThread.  This has the benefit of allowing our function access to the Class via the function becoming a Method of the Class.
 ~~~~
-	from easyThread import EasyThread
+    from easyThread import EasyThread
 
     ## Create a function defining what you want your jobs to do
     ## Use of the work object is not required, but is provided if wanted
     def exampleThread1(self, work):
         print (work)
-		print (self.nThread)
+        print (self.nThread)
 
     ## Add our function to EasyThread
     EasyThread.theThread = exampleThread1
        
     ## Instantiate using #s other than defaults
-    et = EasyThread([1,2,3,4,5], 5)
+    et = EasyThread(jobList = [1,2,3,4,5], nThread = 5)
     
     ## Start the work
     et.easyLaunch()
@@ -36,16 +36,16 @@ Add our function as a method to EasyThread.  This has the benefit of allowing ou
 ### Example Usage #2 -- Parameterization
 Pass our function as a parameter to EasyThread.  Does not allow our function access to the Class:
 ~~~~
-	from easyThread import EasyThread
+    from easyThread import EasyThread
 
     ## Create a function defining what you want your jobs to do
     ## Use of the work object is not required, but is provided if wanted
     def exampleThread2(work):
-        print(work)    
-    
+        print(work)
+
     ## Instantiate with our function using the default parameters
     et = EasyThread(exampleThread2)
-    
+
     ## Start the work
     et.easyLaunch()
 ~~~~
