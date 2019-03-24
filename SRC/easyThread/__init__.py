@@ -15,12 +15,15 @@ class Backgrounder(object):
             self.theThread = theThread
 
 
-    def easyLaunch(self):
-        """Kick off the threads with a pool"""
+    def easyLaunch(self, args = None):
+        """Kick off the thread"""
         if self.theThread is None:
             print('You need to create theThread() prior to launch')
             sys.exit(1)
-        thread = threading.Thread(target = self.theThread, args=())
+        if args is not None:
+            thread = threading.Thread(target = self.theThread, args = args)
+        else:
+            thread = threading.Thread(target = self.theThread)
         thread.daemon = True
         thread.start()
 
