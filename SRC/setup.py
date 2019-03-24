@@ -5,7 +5,7 @@ from setuptools import setup
 
 setup(
     name = 'easy-thread',
-    version = '0.8',
+    version = '1.0',
     author = 'stryngs',
     author_email = 'info@ethicalreporting.org',
     packages = ['easyThread'],

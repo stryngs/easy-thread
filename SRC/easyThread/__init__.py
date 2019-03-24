@@ -1,5 +1,4 @@
 #!/usr/bin/python
-
 import sys
 import threading
 
@@ -9,8 +8,25 @@ try:
 except:
     from Queue import Queue
 
+class Backgrounder(object):
+    """Setup and hold the backgrounded thread"""
+    def __init__(self, theThread = None):
+        if theThread is not None:
+            self.theThread = theThread
+
+
+    def easyLaunch(self):
+        """Kick off the threads with a pool"""
+        if self.theThread is None:
+            print('You need to create theThread() prior to launch')
+            sys.exit(1)
+        thread = threading.Thread(target = self.theThread, args=())
+        thread.daemon = True
+        thread.start()
+
+
 class EasyThread(object):
-    """Setup and hold the threaded environment"""
+    """Setup and hold the threaded queue"""
     def __init__(self, theThread = None, jobList = range(10), nThread = 10):
         self.q = Queue(maxsize = 0)
         if theThread is not None:
@@ -82,3 +98,24 @@ if __name__ == '__main__':
     
     ## Start the work
     et.easyLaunch()
+
+    
+    """
+    Example 3 -- Add our function as a method to Backgrounder
+    This has the benefit of allowing our function access to the Class via
+    the function becoming a Method of the Class
+    """
+    
+    ## Create a function defining what you want your jobs to do
+    ## Use of the work object is not required, but is provided if wanted
+    def exampleThread3(self):
+        print ('hello world')
+
+    ## Add our function to Backgrounder
+    Backgrounder.theThread = exampleThread3
+       
+    ## Instantiate using #s other than defaults
+    bg = Backgrounder()
+    
+    ## Start the work
+    bg.easyLaunch()

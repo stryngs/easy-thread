@@ -12,7 +12,7 @@ nThread - This is an integer representing the threads available for your use.
 #### EasyThread.theThread()
 This is the function which you will create.  As there was no purpose to create this object in the file, the code itself does not contain it.  You the user must define what theThread() does.  An example of how to do so is below.
 
-### Example Usage #1 -- Method moficiation
+### Example usage #1 -- EasyThread Method modification
 Add our function as a method to EasyThread.  This has the benefit of allowing our function access to the Class via the function becoming a Method of the Class.
 ~~~~
     from easyThread import EasyThread
@@ -33,7 +33,7 @@ Add our function as a method to EasyThread.  This has the benefit of allowing ou
     et.easyLaunch()
 ~~~~
 
-### Example Usage #2 -- Parameterization
+### Example usage #2 -- EasyThread Parameterization
 Pass our function as a parameter to EasyThread.  Does not allow our function access to the Class:
 ~~~~
     from easyThread import EasyThread
@@ -49,6 +49,25 @@ Pass our function as a parameter to EasyThread.  Does not allow our function acc
     ## Start the work
     et.easyLaunch()
 ~~~~
+
+### Example usage #3 -- Backgrounder Method modification
+Add our function as a method to Backgrounder.  This has the benefit of allowing our function access to the Class via the function becoming a Method of the Class.
+~~~~
+    from easyThread import Backgrounder
+    
+    ## Create a function defining what you want your jobs to do
+    ## Use of the work object is not required, but is provided if wanted
+    def exampleThread3(self):
+        print ('hello world')
+
+    ## Add our function to Backgrounder
+    Backgrounder.theThread = exampleThread3
+       
+    ## Instantiate using #s other than defaults
+    bg = Backgrounder()
+    
+    ## Start the work
+    bg.easyLaunch()
 
 ### Feedback
 I would love any feedback from the community on this repo.  Threading has always been one of my slowpoints in Python, and I hope that by sharing this, others might find it useful.
