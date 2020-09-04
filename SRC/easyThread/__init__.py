@@ -36,6 +36,7 @@ class EasyThread(object):
             self.theThread = theThread
         self.jobList = jobList
         self.nThread = nThread
+        self.lock = threading.Lock()
 
 
     def workerAdd(self, q):
@@ -63,13 +64,13 @@ class EasyThread(object):
 
 ## Give a quick reminder of how to run
 if __name__ == '__main__':
-    
+
     """
     Example 1 -- Add our function as a method to EasyThread
     This has the benefit of allowing our function access to the Class via
     the function becoming a Method of the Class
     """
-    
+
     ## Create a function defining what you want your jobs to do
     ## Use of the work object is not required, but is provided if wanted
     def exampleThread1(self, work):
@@ -78,37 +79,37 @@ if __name__ == '__main__':
 
     ## Add our function to EasyThread
     EasyThread.theThread = exampleThread1
-       
+
     ## Instantiate using #s other than defaults
     et = EasyThread([1,2,3,4,5], 5)
-    
+
     ## Start the work
     et.easyLaunch()
 
-    
+
     """
     Example 2 -- Pass our function as a parameter to EasyThread
     Does not allow our function access to the Class
     """
-    
+
     ## Create a function defining what you want your jobs to do
     ## Use of the work object is not required, but is provided if wanted
     def exampleThread2(work):
-        print (work)    
-    
+        print (work)
+
     ## Instantiate with our function using the default parameters
     et = EasyThread(exampleThread2)
-    
+
     ## Start the work
     et.easyLaunch()
 
-    
+
     """
     Example 3 -- Add our function as a method to Backgrounder
     This has the benefit of allowing our function access to the Class via
     the function becoming a Method of the Class
     """
-    
+
     ## Create a function defining what you want your jobs to do
     ## Use of the work object is not required, but is provided if wanted
     def exampleThread3(self):
@@ -116,9 +117,9 @@ if __name__ == '__main__':
 
     ## Add our function to Backgrounder
     Backgrounder.theThread = exampleThread3
-       
+
     ## Instantiate using #s other than defaults
     bg = Backgrounder()
-    
+
     ## Start the work
     bg.easyLaunch()
