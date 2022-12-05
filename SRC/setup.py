@@ -5,7 +5,7 @@ from setuptools import setup
 
 setup(
     name = 'easy-thread',
-    version = '1.0.6',
+    version = '1.0.8',
     author = 'stryngs',
     author_email = 'info@127.0.0.1',
     packages = ['easyThread'],

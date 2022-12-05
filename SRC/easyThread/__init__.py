@@ -21,11 +21,11 @@ class Backgrounder(object):
             print('You need to create theThread() prior to launch')
             sys.exit(1)
         if args is not None:
-            thread = threading.Thread(target = self.theThread, args = args)
+            self.thread = threading.Thread(target = self.theThread, args = args)
         else:
-            thread = threading.Thread(target = self.theThread)
-        thread.daemon = True
-        thread.start()
+            self.thread = threading.Thread(target = self.theThread)
+        self.thread.daemon = True
+        self.thread.start()
 
 
 class EasyThread(object):
